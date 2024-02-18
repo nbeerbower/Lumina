@@ -1,7 +1,14 @@
+import './MenuHeader.css'
+import MenuItem from '../MenuItem/MenuItem'
+
 function MenuHeader() {
 	return (
-		<div>
-			<h1>Menu Header</h1>
+		<div className="nav-bar">
+			<MenuItem route="/" label="Home" />
+			<MenuItem route="/model" label="Model" />
+			<MenuItem route="/inference" label="Inference" />
+			<MenuItem route="/quantization" label="Quantization" />
+			<MenuItem route="/settings" label="Settings" />
 		</div>
 	)
 }
