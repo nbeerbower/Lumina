@@ -1,14 +1,11 @@
-import { Outlet } from 'react-router-dom'
-
-import Footer from './Footer/Footer'
+import AppBody from './AppBody/AppBody'
 import MenuHeader from './MenuHeader/MenuHeader'
 
 function Layout() {
 	return (
 		<div>
 			<MenuHeader />
-			<Outlet />
-			<Footer />
+			<AppBody />
 		</div>
 	)
 }
