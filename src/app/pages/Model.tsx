@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 
 // TODO: break into components and style
 
@@ -10,7 +10,8 @@ function Model() {
 	const handleLoad = () => {
 		const file = fileInput.current.files[0]
 		setModelPath(file.path)
-		console.log(file)
+		console.log('Loading model: ' + file.path)
+		window.llama.loadModel(file.path)
 	}
 
 	const handleClear = () => {

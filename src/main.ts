@@ -1,5 +1,11 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
+import {LlamaModel, LlamaContext, LlamaChatSession} from "node-llama-cpp";
+
+// TODO: move llama logic
+let model: LlamaModel;
+let context: LlamaContext;
+let chatSession: LlamaChatSession;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -14,6 +20,15 @@ const createWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
+  });
+
+  ipcMain.on('loadModel', (event, path) => {
+    console.log('Loading model: ' + path)
+    // model = new LlamaModel({
+    //   modelPath: path
+    // });
+    // context = new LlamaContext({model});
+    // chatSession = new LlamaChatSession({context});
   });
 
   // and load the index.html of the app.
