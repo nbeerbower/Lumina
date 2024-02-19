@@ -21,3 +21,7 @@ npm run build
 ## License
 
 This project is licensed under the GPL-3.0 License. Please release any changes you make to the public under the same license.
+
+## Acknowledgements
+
+- node-llama-cpp: [withcatai/node-llama-cpp](https://github.com/withcatai/node-llama-cpp)
