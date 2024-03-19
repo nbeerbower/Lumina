@@ -1,11 +1,23 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
-import {LlamaModel, LlamaContext, LlamaChatSession} from "node-llama-cpp";
+
 
 // TODO: move llama logic
-let model: LlamaModel;
-let context: LlamaContext;
-let chatSession: LlamaChatSession;
+// let model: LlamaModel;
+// let context: LlamaContext;
+// let chatSession: LlamaChatSession;
+
+async function loadLlamaModel(path: string) {
+  console.log('Loading model: ' + path)
+  const {LlamaModel, LlamaContext, LlamaChatSession} = await Function('return import("node-llama-cpp")')();
+  const model = new LlamaModel({
+    modelPath: path
+  });
+  console.log('Model loaded: ' + model);
+  return model;
+  // context = new LlamaContext({model});
+  // chatSession = new LlamaChatSession({context});
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -24,6 +36,7 @@ const createWindow = () => {
 
   ipcMain.on('loadModel', (event, path) => {
     console.log('Loading model: ' + path)
+    loadLlamaModel(path);
     // model = new LlamaModel({
     //   modelPath: path
     // });
